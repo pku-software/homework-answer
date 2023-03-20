@@ -1,0 +1,45 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      OPENJUDGE_USERNAME: ${{ secrets.OPENJUDGE_USERNAME }}
+      OPENJUDGE_PASSWORD: ${{ secrets.OPENJUDGE_PASSWORD }}
+      OPENJUDGE_HOST: rjsj.openjudge.cn
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get data
+        uses: actions/checkout@v3
+        with:
+          repository: pku-software/homework-answer-data
+          token: ${{ secrets.DATA_REPO_PAT }}
+          path: "./data"
+      - uses: pnpm/action-setup@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "pnpm"
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: "./docs/.vuepress/dist"
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v1
+        id: deployment

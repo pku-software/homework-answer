@@ -1,0 +1,10 @@
+node_modules/
+
+.cache
+.temp
+dist
+
+data.json
+/data
+
+.env
