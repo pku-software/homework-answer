@@ -78,7 +78,7 @@ ${problem.output.replace(/\n/g, "\n\n")}
 
 :::
 
-${problem.explanation.replace(/\n/g, "\n\n")}
+${problem.explanation}
 
 ## 参考答案
 

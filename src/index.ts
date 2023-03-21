@@ -8,6 +8,8 @@ dotenv.config();
 
 // 每学期初修改
 const CURRENT_SEMESTER = 2023;
+// 开发用
+const TODAY = process.env.TEST_DATE ? new Date(process.env.TEST_DATE) : new Date();
 
 type AnswerInfo = ProblemInfo & Answer;
 interface BriefProblemInfo {
@@ -30,7 +32,7 @@ for (const c of contests) {
     // 练习
     if (c.beginDate === null || c.endDate === null) continue;
     // 尚未截止
-    if (+c.endDate > Date.now()) continue;
+    if (+c.endDate > +TODAY) continue;
     // 过期
     if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
     

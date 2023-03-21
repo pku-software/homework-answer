@@ -14,7 +14,7 @@
 
 ## 本地开发
 
-- 新建 `.env` 文件写入 `OPENJUDGE_USERNAME` 与 `OPENJUDGE_PASSWORD`。
+- 新建 `.env` 文件写入 `OPENJUDGE_USERNAME` 与 `OPENJUDGE_PASSWORD`。如需测试未来作业答案是否正确编写，请写入 `TEST_DATE` 为该作业截止期限后。
 - 新建 `data` 目录符号链接到 `pku-software/homework-answer-data`。
 - 运行 `pnpm build:data` 准备数据。
 - 运行 `pnpm dev` 热预览。
