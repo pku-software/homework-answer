@@ -72,4 +72,4 @@ const DESTINATION = fileURLToPath(new URL("../docs/.vuepress/data.json", import.
 await writeFile(DESTINATION, JSON.stringify({
     contests: allContests,
     problems: allProblems
-}, null, 2));
+}/*, null, 2 */));
