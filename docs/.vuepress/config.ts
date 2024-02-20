@@ -7,7 +7,14 @@ import {
     createPage,
     Page,
 } from "vuepress";
-import { contests, problems } from "./data.json";
+import { ContestsGroup, ProblemsGroup } from "../../src/index.ts";
+import {
+    contests as untyped_contests,
+    problems as untyped_problems
+} from "./data.json";
+
+var contests: ContestsGroup = untyped_contests
+var problems: ProblemsGroup = untyped_problems
 
 function getSidebar(): SidebarConfigArray {
     const sidebar: SidebarConfigArray = [];
@@ -82,17 +89,16 @@ ${problem.explanation}
 
 ## 参考答案
 
-${
-    typeof problem.codes === "string"
-        ? codeToBlock(problem.codes, prefixLineNum, suffixLineNum)
-        : "<CodeGroup>\n" +
-          Object.entries(problem.codes).map(([title, code]) => {
-              return `<CodeGroupItem title="${title}">
+${typeof problem.codes === "string"
+                        ? codeToBlock(problem.codes, prefixLineNum, suffixLineNum)
+                        : "<CodeGroup>\n" +
+                        Object.entries(problem.codes).map(([title, code]) => {
+                            return `<CodeGroupItem title="${title}">
 ${codeToBlock(code, prefixLineNum, suffixLineNum)}       
 </CodeGroupItem>`;
-          }) +
-          "\n</CodeGroup>"
-}
+                        }) +
+                        "\n</CodeGroup>"
+                    }
                 `,
             })
         );

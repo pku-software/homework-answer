@@ -7,25 +7,27 @@ import { Answer, getAnswer, getContestDetails } from "./fs.js";
 dotenv.config();
 
 // 每学期初修改
-const CURRENT_SEMESTER = 2023;
+const CURRENT_SEMESTER = 2024;
 // 开发用
 const TODAY = process.env.TEST_DATE ? new Date(process.env.TEST_DATE) : new Date();
 
-type AnswerInfo = ProblemInfo & Answer;
-interface BriefProblemInfo {
+export type AnswerInfo = ProblemInfo & Answer;
+export interface BriefProblemInfo {
     title: string,
     id: number
 }
-interface ContestInfo {
+export interface ContestInfo {
     id: number,
     title: string,
     href: string,
     description: string,
     problems: BriefProblemInfo[]
 }
+export type ProblemsGroup = Record<number, AnswerInfo>;
+export type ContestsGroup = ContestInfo[];
 
-const allProblems: Record<number, AnswerInfo> = {};
-const allContests: ContestInfo[] = [];
+const allProblems: ProblemsGroup = {};
+const allContests: ContestsGroup = [];
 
 const contests = await getContests();
 for (const c of contests) {
@@ -35,7 +37,7 @@ for (const c of contests) {
     if (+c.endDate > +TODAY) continue;
     // 过期
     if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
-    
+
     const problems = await getProblemsOfContest(c.id);
     const briefInfos: BriefProblemInfo[] = [];
     for (const p of problems) {
