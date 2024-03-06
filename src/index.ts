@@ -32,11 +32,11 @@ const allContests: ContestsGroup = [];
 const contests = await getContests();
 for (const c of contests) {
     // 练习
-    if (c.beginDate === null || c.endDate === null) continue;
+    // if (c.beginDate === null || c.endDate === null) continue;
     // 尚未截止
-    if (+c.endDate > +TODAY) continue;
+    // if (+c.endDate > +TODAY) continue;
     // 过期
-    if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
+    // if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
 
     const problems = await getProblemsOfContest(c.id);
     const briefInfos: BriefProblemInfo[] = [];
