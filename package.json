@@ -7,7 +7,7 @@
         "dev": "vuepress dev docs",
         "build": "pnpm build:data && vuepress build docs"
     },
-    "packageManager": "pnpm@8",
+    "packageManager": "pnpm@8.15.4",
     "devDependencies": {
         "@gytx/openjudge-api": "^0.1.3",
         "@types/markdown-it": "^12.2.3",
