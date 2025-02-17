@@ -7,7 +7,7 @@ import { Answer, getAnswer, getContestDetails } from "./fs.js";
 dotenv.config();
 
 // 每学期初修改
-const CURRENT_SEMESTER = 2024;
+const CURRENT_SEMESTER = 2025;
 // 开发用
 const TODAY = process.env.TEST_DATE ? new Date(process.env.TEST_DATE) : new Date();
 
