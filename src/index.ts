@@ -37,6 +37,8 @@ for (const c of contests) {
     if (+c.endDate > +TODAY) continue;
     // 过期
     if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
+    // 考试
+    if (c.title.includes("期中考试")) continue;
 
     const problems = await getProblemsOfContest(c.id);
     const briefInfos: BriefProblemInfo[] = [];
