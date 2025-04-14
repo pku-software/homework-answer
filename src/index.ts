@@ -34,11 +34,12 @@ for (const c of contests) {
     // 练习
     if (c.beginDate === null || c.endDate === null) continue;
     // 尚未截止
-    if (+c.endDate > +TODAY) continue;
+    if (+c.endDate > +TODAY && !c.title.includes("STL")) continue;
     // 过期
     if (+c.beginDate < +new Date(CURRENT_SEMESTER, 0, 1)) continue;
     // 考试
     if (c.title.includes("期中考试")) continue;
+    // 
 
     const problems = await getProblemsOfContest(c.id);
     const briefInfos: BriefProblemInfo[] = [];
